@@ -15,11 +15,11 @@ const assets = [
     "https://demo.webtech.app/pwa/images/coffee9.jpg",
 ]
 self.addEventListener("install", installEvent => {
-    installEvent.waitUntill(
-        caches.open(staticDevCoffee).then(cache => {
-            cache.addAll(assets)
-        })
-    )
+    // installEvent.waitUntill(
+    //     caches.open(staticDevCoffee).then(cache => {
+    //         cache.addAll(assets)
+    //     })
+    // )
 })
 self.addEventListener('fetch', fetchEvent => {
     fetchEvent.respondWith(
