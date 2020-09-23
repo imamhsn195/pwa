@@ -21,3 +21,16 @@ self.addEventListener("install", installEvent => {
         })
     )
 })
+self.addEventListener('fetch', fetchEvent => {
+    fetchEvent.respondWith(
+        caches.match(fetchEvent.request).then(res => {
+            return res || fetch(fetchEvent.request)
+        })
+    )
+})
+
+if("serviceWorker" in navigator){
+    window.addEventListener("load", function(){
+        navigator.serviceWorker.register("/serviceWorker.js").then(res => console.log("Service worker registered")).catch(err => console.log("Service worker no registered", err))
+    })
+}
