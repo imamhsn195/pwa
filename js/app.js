@@ -1,6 +1,6 @@
 const container = document.querySelector('.container');
 const coffees = [
-    { name:"Perspiciatis" , image: "images/coffee1.jpg"},
+    { name: "Perspiciatis" , image: "images/coffee1.jpg"},
     { name: "Voluptatem", image: "images/coffee2.jpg" },
     { name: "Explicabo", image: "images/coffee3.jpg" },
     { name: "Rchitecto", image: "images/coffee4.jpg" },
@@ -15,7 +15,7 @@ const showCoffees = () => {
     coffees.forEach(({name, image}) => 
         (output += `
             <div class='card'>
-                <img class='card--avatar' src=${image}/>
+                <img class='card--avatar' src=${image} />
                 <h1 class='card--title'>${name}</h1>
                 <a class='card--link' href="#">Teste</a>
             </div>
