@@ -15,11 +15,11 @@ const assets = [
     "/images/coffee9.jpg",
 ]
 self.addEventListener("install", installEvent => {
-    // installEvent.waitUntill(
-    //     caches.open(staticDevCoffee).then(cache => {
-    //         cache.addAll(assets)
-    //     })
-    // )
+    installEvent.waitUntill(
+        caches.open(staticDevCoffee).then(cache => {
+            cache.addAll(assets)
+        })
+    )
 })
 self.addEventListener('fetch', fetchEvent => {
     fetchEvent.respondWith(
@@ -28,12 +28,3 @@ self.addEventListener('fetch', fetchEvent => {
         })
     )
 })
-
-if("serviceWorker" in navigator){
-    window.addEventListener("load", function(){
-        navigator.serviceWorker
-        .register("serviceWorker.js")
-        .then(res => console.log("Service worker registered"))
-        .catch(err => console.log("Service worker no registered", err))
-    })
-}
