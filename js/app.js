@@ -1,7 +1,7 @@
 if("serviceWorker" in navigator){
     window.addEventListener("load", function(){
         navigator.serviceWorker
-        .register("/serviceWorker.js")
+        .register("https://demo.webtech.app/pwa/serviceWorker.js")
         .then(res => console.log("Service worker registered"))
         .catch(err => console.log("Service worker no registered", err))
     })
