@@ -15,7 +15,7 @@ const assets = [
     "/images/coffee9.jpg",
 ]
 self.addEventListener("install", installEvent => {
-    installEvent.waitUntill(
+    installEvent.waitUntil(
         caches.open(staticDevCoffee).then(cache => {
             cache.addAll(assets)
         })
