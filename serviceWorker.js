@@ -1,4 +1,4 @@
-const staticDevCoffee = 'dev-coffee-site-v1';
+const staticDevCoffee = 'dev-coffee-site-v3';
 const assets = [
     "/",
     "/index.html",
@@ -20,6 +20,19 @@ self.addEventListener("install", installEvent => {
             cache.addAll(assets)
         })
     )
+})
+self.addEventListener('activate', activateEvent => {
+    // console.log(activateEvent);
+    activateEvent.waitUntil(
+        caches.keys().then(
+            keys => {
+                // console.log(keys)
+                return Promise.all(keys)
+                .filter(key => key !== staticDevCoffee)
+                .map(key => caches.delete(key))
+            }
+        )
+    );
 })
 self.addEventListener('fetch', fetchEvent => {
     fetchEvent.respondWith(
