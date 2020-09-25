@@ -31,7 +31,7 @@ self.addEventListener('activate', activateEvent => {
         caches.keys().then(keys => {
          return Promise.all(keys
                 .filter(key => key !== staticDevCoffee  && key !== dynamicCacheName)
-                // .map(key => caches.delete(key))
+                .map(key => caches.delete(key))
             );
         })
     );
