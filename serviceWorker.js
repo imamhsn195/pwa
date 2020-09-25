@@ -24,31 +24,18 @@ self.addEventListener("install", installEvent => {
         caches.open(staticDevCoffee).then(cache => {
             cache.addAll(assets)
         })
-    )
-})
-// self.addEventListener('activate', activateEvent => {
-//     activateEvent.waitUntil(
-//         caches.keys().then(keys => {
-//          return Promise.all(keys
-//                 .filter(key => key !== staticDevCoffee  && key !== dynamicCacheName)
-//                 .map(key => caches.delete(key))
-//             );
-//         })
-//     );
-// });
-// activate event
-self.addEventListener('activate', evt => {
-    //console.log('service worker activated');
-    evt.waitUntil(
-      caches.keys().then(keys => {
-        //console.log(keys);
-        return Promise.all(keys
-          .filter(key => key !== staticDevCoffee && key !== dynamicCacheName)
-        //   .map(key => caches.delete(key))
-        );
-      })
     );
-  });
+});
+self.addEventListener('activate', activateEvent => {
+    activateEvent.waitUntil(
+        caches.keys().then(keys => {
+         return Promise.all(keys
+                .filter(key => key !== staticDevCoffee  && key !== dynamicCacheName)
+                .map(key => caches.delete(key))
+            );
+        })
+    );
+});
 
 self.addEventListener('fetch', fetchEvent => {
     fetchEvent.respondWith(
