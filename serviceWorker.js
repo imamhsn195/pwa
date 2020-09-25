@@ -4,6 +4,9 @@ const assets = [
     "/",
     "/index.html",
     "/fallback.html",
+    "/about.html",
+    "/contact.html",
+    "/blog.html",
     "/css/style.css",
     "/js/app.js",
     "/images/coffee1.jpg",
@@ -23,18 +26,29 @@ self.addEventListener("install", installEvent => {
         })
     )
 })
-self.addEventListener('activate', activateEvent => {
-    // console.log(activateEvent);
-    activateEvent.waitUntil(
-        caches.keys().then(keys => {
-                // console.log(keys)
-         return Promise.all(keys
-                .filter(key => key !== staticDevCoffee  && key !== dynamicCacheName)
-                .map(key => caches.delete(key))
-            );
-        })
+// self.addEventListener('activate', activateEvent => {
+//     activateEvent.waitUntil(
+//         caches.keys().then(keys => {
+//          return Promise.all(keys
+//                 .filter(key => key !== staticDevCoffee  && key !== dynamicCacheName)
+//                 .map(key => caches.delete(key))
+//             );
+//         })
+//     );
+// });
+// activate event
+self.addEventListener('activate', evt => {
+    //console.log('service worker activated');
+    evt.waitUntil(
+      caches.keys().then(keys => {
+        //console.log(keys);
+        return Promise.all(keys
+          .filter(key => key !== staticDevCoffee && key !== dynamicCacheName)
+          .map(key => caches.delete(key))
+        );
+      })
     );
-});
+  });
 
 self.addEventListener('fetch', fetchEvent => {
     fetchEvent.respondWith(
