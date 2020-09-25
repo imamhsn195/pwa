@@ -1,5 +1,5 @@
-const staticDevCoffee = "dev-coffee-site-v4";
-const dynamicCacheName = "dev-coffee-dynamic-v4";
+const staticDevCoffee = "dev-coffee-site-v1";
+const dynamicCacheName = "dev-coffee-dynamic-v1";
 const assets = [
     "/",
     "/index.html",
@@ -42,7 +42,7 @@ self.addEventListener('fetch', fetchEvent => {
     fetchEvent.respondWith(
         caches.match(fetchEvent.request).then(cacheRes => {
             return cacheRes || fetch(fetchEvent.request).then(fetchRes => {
-                return caches.open(dynamicCacheName).then(cache => {
+                return caches.open(staticDevCoffee).then(cache => {
                     cache.put(fetchEvent.request.url, fetchRes.clone());
                     return fetchRes;
                 })
