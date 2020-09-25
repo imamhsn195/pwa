@@ -24,13 +24,12 @@ self.addEventListener("install", installEvent => {
 self.addEventListener('activate', activateEvent => {
     // console.log(activateEvent);
     activateEvent.waitUntil(
-        caches.keys().then(
-            keys => {
+        caches.keys().then(keys => {
                 // console.log(keys)
-                return Promise.all(keys)
+         return Promise.all(keys
                 .filter(key => key !== staticDevCoffee)
                 .map(key => caches.delete(key))
-            }
+         )}
         )
     );
 })
