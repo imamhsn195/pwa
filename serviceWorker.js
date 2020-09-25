@@ -1,4 +1,5 @@
 const staticDevCoffee = 'dev-coffee-site-v1';
+const dynamicCacheName = "dev-coffee-dynamic-v1";
 const assets = [
     "/",
     "/index.html",
@@ -27,16 +28,22 @@ self.addEventListener('activate', activateEvent => {
         caches.keys().then(keys => {
                 // console.log(keys)
          return Promise.all(keys
-                .filter(key => key !== staticDevCoffee)
+                .filter(key => key !== staticDevCoffee  && key !== dynamicCacheName)
                 .map(key => caches.delete(key))
-         )}
-        )
+            );
+        })
     );
-})
+});
+
 self.addEventListener('fetch', fetchEvent => {
     fetchEvent.respondWith(
-        caches.match(fetchEvent.request).then(res => {
-            return res || fetch(fetchEvent.request)
-        })
-    )
-})
+        caches.match(fetchEvent.request).then(cacheRes => {
+            return cacheRes || fetch(fetchEvent.request).then(fetchRes => {
+                return caches.open(dynamicCacheName).then(cache => {
+                    cache.put(fetchEvent.request.url, fetchRes.clone());
+                    return fetchRes;
+                })
+            });
+        }).catch(()=> caches.match("/pages/fallback.html"))
+    );
+});

@@ -2,11 +2,11 @@ if("serviceWorker" in navigator){
     window.addEventListener("load", function(){
         navigator.serviceWorker
         .register("https://demo.webtech.app/pwa/serviceWorker.js")
-        .then(res => console.log("Service worker registered"))
+        .then(res => console.log("Service worker registered", res))
         .catch(err => console.log("Service worker no registered", err))
     })
 }
-const container = document.querySelector('.container');
+const container = document.querySelector('.home');
 const coffees = [
     { name: "Perspiciatis" , image: "images/coffee1.jpg"},
     { name: "Voluptatem", image: "images/coffee2.jpg" },
