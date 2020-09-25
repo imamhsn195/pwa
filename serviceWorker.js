@@ -1,5 +1,5 @@
 const staticDevCoffee = "dev-coffee-site-v1";
-const dynamicCacheName = "dev-coffee-dynamic-v1";
+const dynamicCacheName = "dev-coffee-dynamic-v4";
 const assets = [
     "/",
     "/index.html",
@@ -30,7 +30,7 @@ self.addEventListener('activate', activateEvent => {
     activateEvent.waitUntil(
         caches.keys().then(keys => {
          return Promise.all(keys
-                .filter(key => key !== staticDevCoffee  && key !== dynamicCacheName)
+                .filter(key => key !== staticDevCoffee && key !== dynamicCacheName)
                 .map(key => caches.delete(key))
             );
         })
