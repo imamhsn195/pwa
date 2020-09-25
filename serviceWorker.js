@@ -38,6 +38,7 @@ self.addEventListener('activate', activateEvent => {
 });
 
 self.addEventListener('fetch', fetchEvent => {
+    if(!(fetchEvent.request.url.indexOf("http") === 0)) return
     fetchEvent.respondWith(
         caches.match(fetchEvent.request).then(cacheRes => {
             return cacheRes || fetch(fetchEvent.request).then(fetchRes => {
