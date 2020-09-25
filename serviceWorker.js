@@ -1,5 +1,5 @@
-const staticDevCoffee = 'dev-coffee-site-v3';
-const dynamicCacheName = "dev-coffee-dynamic-v3";
+const staticDevCoffee = "dev-coffee-site-v4";
+const dynamicCacheName = "dev-coffee-dynamic-v4";
 const assets = [
     "/",
     "/index.html",
