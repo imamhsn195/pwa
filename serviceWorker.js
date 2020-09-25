@@ -3,6 +3,7 @@ const dynamicCacheName = "dev-coffee-dynamic-v1";
 const assets = [
     "/",
     "/index.html",
+    "/fallback.html",
     "/css/style.css",
     "/js/app.js",
     "/images/coffee1.jpg",

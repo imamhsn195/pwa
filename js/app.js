@@ -29,7 +29,7 @@ const showCoffees = () => {
             </div>
         `)
     )
-    container.innerHTML= output;
+    container !== null ? container.innerHTML= output : "";
 }
 
 document.addEventListener('DOMContentLoaded', showCoffees);
